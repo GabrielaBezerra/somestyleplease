@@ -3,22 +3,6 @@ theme = 'somestyleplease'
 defaultContentLanguage = 'en'
 defaultContentLanguageInSubdir = true
 
-[languages]
-  [languages.en]
-    locale = 'en-US'
-    label = 'English'
-    direction = 'ltr'
-    title = 'My website'
-    weight = 1
-
-  [languages.pl]
-    locale = 'pl-PL'
-    label = 'Polski'
-    direction = 'ltr'
-    title = 'Moja strona internetowa'
-    weight = 2
-
-
 [permalinks]
   posts = "/:contentbasename/"
   pages = "/:contentbasename/"

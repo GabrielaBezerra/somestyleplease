@@ -1,10 +1,18 @@
 {{ define "main" }}
-    <div class="taxonomy-back-link">
+    <div class="back-and-meta">
         {{ partial "back_link.html" . }}
+        {{ with .Translations }}
+        <div class="post-meta">
+            {{ range . }}
+                <a href="{{ .Permalink }}">{{ .Language.Label }}</a>
+            {{ end }}
+        </div>
+        {{ end }}
     </div>
 
-    <h1>{{ .Data.Term | lower }}</h1>
-    {{ $i18nID := printf "categories.%s" (.Data.Term | lower | urlize) }}
+    {{ $title := .Title | default (.Data.Term | lower) }}
+    <h1>{{ $title }}</h1>
+    {{ $i18nID := printf "categories.%s" ($title | lower | urlize) }}
     {{ with i18n $i18nID }}
         <p>{{ . }}</p>
     {{ else }}
@@ -12,5 +20,8 @@
     {{ end }}
 
     {{ .Content }}
-    {{ partial "post_list.html" (dict "context" .) }}
+    {{ $posts := where .Data.Pages "Draft" false }}
+    {{ if gt (len $posts) 0 }}
+        {{ partial "post_list.html" (dict "context" .) }}
+    {{ end }}
 {{ end }}

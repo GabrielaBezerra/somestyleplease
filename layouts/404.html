@@ -1,8 +1,26 @@
 {{ define "main" }}
+    <div class="back-and-meta">
+        {{ partial "back_link.html" . }}
+        {{ with .Translations }}
+            <div class="post-meta">
+                {{ range . }}
+                    <a href="{{ .Permalink }}">{{ .Language.Label }}</a>
+                {{ end }}
+            </div>
+        {{ end }}
+    </div>
 
-{{- partial "back_link.html" . -}}
+    <header>
+        <h1>{{ i18n "404.title" }}</h1>
+        <p>{{ i18n "404.message" }}</p>
+    </header>
 
-<header>
-    <h1>404 Not Found</h1>
-</header>
+    <script>
+      (function () {
+        var path = window.location.pathname || '/';
+        if (path.indexOf('/pt/') === 0 && !path.endsWith('/pt/404.html')) {
+          window.location.replace('/pt/404.html');
+        }
+      })();
+    </script>
 {{ end }}
