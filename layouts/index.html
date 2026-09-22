@@ -22,7 +22,7 @@
 
         {{ if or (eq .type "all") (gt (len $filteredPosts) 0) }}
             <p>
-                {{ if eq .type "all" }}{{ i18n .title_key }}{{ else if eq .type "category" }}{{ i18n "categoryTitle" .category }}{{ end }}
+                {{ if eq .type "all" }}{{ i18n .title_key }}{{ else if eq .type "category" }}{{ i18n "categoryTitle" (i18n (printf "categoryTitles.%s" .category)) }}{{ end }}
             </p>
             <ul>
                 {{ range first $postLimit $filteredPosts }}

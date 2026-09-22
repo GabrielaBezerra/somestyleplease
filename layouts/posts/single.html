@@ -33,7 +33,7 @@
                 {{ i18n "general.categories" }}
                 {{ $length := len . }}
                 {{ range $index, $element := . }}
-                    <a href="{{ (print "/categories/" $element | urlize) | relLangURL }}">{{ $element }}</a>{{ if lt (add $index 1) $length }},{{ end }}
+                    <a href="{{ (print "/categories/" $element | urlize) | relLangURL }}">{{ i18n (printf "categoryNames.%s" $element) }}</a>{{ if lt (add $index 1) $length }},{{ end }}
                 {{ end }}
             {{ end }}
         {{ end }}

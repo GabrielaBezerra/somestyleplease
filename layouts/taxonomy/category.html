@@ -12,7 +12,8 @@
 
     {{ $title := .Title | default (.Data.Term | lower) }}
     <h1>{{ $title }}</h1>
-    {{ $i18nID := printf "categories.%s" ($title | lower | urlize) }}
+    {{ $categorySlug := path.Base .RelPermalink }}
+    {{ $i18nID := printf "categories.%s" $categorySlug }}
     {{ with i18n $i18nID }}
         <p>{{ . }}</p>
     {{ else }}
